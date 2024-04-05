@@ -195,6 +195,29 @@ updates before applying them to the main analysis environment.
 * Make sure to backup code and data before performing updates.
 * Check if there are any compatibility issues with other packages you are using.
 
+## Archived CRAN packages
+
+In the event that a package is no longer available on CRAN, it may be
+desirable to install an archived package, especially if it is assumed that the
+package will return to an unarchived state at a later date. Users who wish to
+protect their systems from the consequences of these state changes can
+install archived packages by using the [CRANhaven][] repository. This repository
+contains archived versions of CRAN packages for up to five weeks or until
+they are unarchived on CRAN. To enable archived CRAN package installations, the
+user can run the following command:
+
+```{r,eval=FALSE}
+options(
+    repos = c(
+        getOption("repos"),
+        CRANhaven = "https://cranhaven.r-universe.dev"
+    )
+)
+BiocManager::install('archivedPackage')
+```
+
+[CRANhaven]: https://cranhaven.org/
+
 # Advanced use
 
 ## Changing version
