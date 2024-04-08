@@ -276,6 +276,26 @@ are using.</li>
 </ul>
 </div>
 </div>
+<div class="section level3">
+<h3 id="archived-cran-packages">Archived CRAN packages<a class="anchor" aria-label="anchor" href="#archived-cran-packages"></a>
+</h3>
+<p>In the event that a package is no longer available on CRAN, it may be
+desirable to install an archived package, especially if it is assumed
+that the package will return to an unarchived state at a later date.
+Users who wish to protect their systems from the consequences of these
+state changes can install archived packages by using the <a href="https://cranhaven.org/" class="external-link">CRANhaven</a> repository. This repository
+contains archived versions of CRAN packages for up to five weeks or
+until they are unarchived on CRAN. To enable archived CRAN package
+installations, the user can run the following command:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
+<span>    repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span>,</span>
+<span>        CRANhaven <span class="op">=</span> <span class="st">"https://cranhaven.r-universe.dev"</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="../reference/install.html">install</a></span><span class="op">(</span><span class="st">'archivedPackage'</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="advanced-use">Advanced use<a class="anchor" aria-label="anchor" href="#advanced-use"></a>
@@ -285,7 +305,7 @@ are using.</li>
 </h3>
 <p>Use the <code>version=</code> argument to update all packages to a
 specific <em>Bioconductor</em> version</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="../reference/install.html">install</a></span><span class="op">(</span>version<span class="op">=</span><span class="st">"3.7"</span><span class="op">)</span></span></code></pre></div>
 <p><em>Bioconductor</em> versions are associated with specific
 <em>R</em> versions, as summarized <a href="https://bioconductor.org/about/release-announcements/" class="external-link">here</a>.
@@ -336,7 +356,7 @@ are</p>
 </ul>
 <p>Once in <em>R</em>, confirm that the version-specific library path
 has been set</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>On Linux and macOS, create a bash alias to save typing, e.g.,</p>
 <ul>
@@ -368,7 +388,7 @@ users require the following steps:</p>
 <p>Use <code>rsync</code> to create local repositories of <a href="https://cran.r-project.org/mirror-howto.html" class="external-link">CRAN</a> and <a href="https://bioconductor.org/about/mirrors/mirror-how-to/" class="external-link">Bioconductor</a>.
 Tell <em>R</em> about these repositories using (e.g., in a site-wide
 <code>.Rprofile</code>, see <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">?.Rprofile</a></code>).</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
 <span>    repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>CRAN_mirror <span class="op">=</span> <span class="st">"file:///path/to/CRAN-mirror"</span><span class="op">)</span>,</span>
 <span>    BioC_mirror <span class="op">=</span> <span class="st">"file:///path/to/Bioc-mirror"</span></span>
@@ -378,7 +398,7 @@ Tell <em>R</em> about these repositories using (e.g., in a site-wide
 </li>
 <li>
 <p>Create an environment variable or option, e.g.,</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
 <span>    BIOCONDUCTOR_ONLINE_VERSION_DIAGNOSIS <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -386,7 +406,7 @@ Tell <em>R</em> about these repositories using (e.g., in a site-wide
 <li>
 <p>Use <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> to bootstrap the BiocManager
 installation.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">install.package</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, <span class="st">"BiocVersion"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
 </ol>
@@ -635,11 +655,11 @@ versions of <code>BiocVersion</code></p>
 <p>Then install the updated <code>BiocVersion</code>, and update all
 <em>Bioconductor</em> packages; answer ‘yes’ when you are asked to
 update a potentially large number of <em>Bioconductor</em> packages.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="../reference/install.html">install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Confirm that the updated <em>Bioconductor</em> is valid for your
 version of <em>R</em></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="../reference/valid.html">valid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -705,7 +725,7 @@ issue</a>.</p></li>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R version 4.3.3 (2024-02-29)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
@@ -731,16 +751,16 @@ issue</a>.</p></li>
 <span><span class="co">## [1] BiocStyle_2.30.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] vctrs_0.6.5           cli_3.6.2             knitr_1.45           </span></span>
-<span><span class="co">##  [4] rlang_1.1.3           xfun_0.42             highr_0.10           </span></span>
+<span><span class="co">##  [1] vctrs_0.6.5           cli_3.6.2             knitr_1.46           </span></span>
+<span><span class="co">##  [4] rlang_1.1.3           xfun_0.43             highr_0.10           </span></span>
 <span><span class="co">##  [7] purrr_1.0.2           textshaping_0.3.7     jsonlite_1.8.8       </span></span>
-<span><span class="co">## [10] htmltools_0.5.7       ragg_1.3.0            sass_0.4.8           </span></span>
+<span><span class="co">## [10] htmltools_0.5.8.1     ragg_1.3.0            sass_0.4.9           </span></span>
 <span><span class="co">## [13] rmarkdown_2.26        evaluate_0.23         jquerylib_0.1.4      </span></span>
 <span><span class="co">## [16] fastmap_1.1.1         yaml_2.3.8            lifecycle_1.0.4      </span></span>
 <span><span class="co">## [19] memoise_2.0.1         bookdown_0.38         BiocManager_1.30.22.5</span></span>
 <span><span class="co">## [22] compiler_4.3.3        fs_1.6.3              systemfonts_1.0.6    </span></span>
 <span><span class="co">## [25] digest_0.6.35         R6_2.5.1              magrittr_2.0.3       </span></span>
-<span><span class="co">## [28] bslib_0.6.1           tools_4.3.3           pkgdown_2.0.7        </span></span>
+<span><span class="co">## [28] bslib_0.7.0           tools_4.3.3           pkgdown_2.0.7        </span></span>
 <span><span class="co">## [31] cachem_1.0.8          desc_1.4.3</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
