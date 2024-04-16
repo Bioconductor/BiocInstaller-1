@@ -423,3 +423,55 @@ test_that("version chooses best", {
         )
     )
 })
+
+test_that(".version_force_version() works", {
+    skip_if_offline()
+
+    test_version <- "3.16"
+    withr::with_envvar(
+        list(R_BIOC_VERSION = ""),
+        expect_false(identical(version(), package_version(test_version)))
+    )
+    withr::with_envvar(
+        list(R_BIOC_VERSION = ""),
+        expect_true(is.na(.version_force_version()))
+    )
+    withr::with_envvar(
+        list(R_BIOC_VERSION = test_version),
+        expect_identical(
+            .version_force_version(), package_version(test_version)
+        )
+    )
+    withr::with_envvar(
+        list(R_BIOC_VERSION = test_version),
+        expect_identical(version(), package_version(test_version))
+    )
+    withr::with_envvar(
+        list(R_BIOC_VERSION = test_version),
+        expect_identical(.version_validate(test_version), test_version)
+    )
+    withr::with_envvar(
+        list(R_BIOC_VERSION = test_version),
+        expect_identical(grep(test_version, repositories()), 1:5)
+    )
+
+    new_lib <- tempfile(); dir.create(new_lib)
+    withr::local_libpaths(new_lib)
+    expect_error(packageVersion("BiocVersion", lib.loc = .libPaths()[1]))
+    ## do *not* install BiocVersion
+    withr::with_envvar(list(R_BIOC_VERSION = test_version), install())
+    expect_error(packageVersion("BiocVersion", lib.loc = .libPaths()[1]))
+    ## install BiocVersion for original version
+    original_version <- version()
+    install("BiocVersion", lib = .libPaths()[1])
+    vers <- packageVersion("BiocVersion", lib.loc = .libPaths()[1])
+    expect_identical(
+        package_version(paste(vers$major, vers$minor, sep = ".")),
+        original_version
+    )
+    ## BiocVersion ignored with R_BIOC_VERSION
+    withr::with_envvar(
+        list(R_BIOC_VERSION = test_version),
+        expect_identical(version(), package_version(test_version))
+    )
+})
