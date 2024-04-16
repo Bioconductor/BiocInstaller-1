@@ -418,7 +418,7 @@ test_that("version chooses best", {
             target_version
         },
         expect_identical(
-            version(),
+            .version_choose_best(),
             target_version
         )
     )
