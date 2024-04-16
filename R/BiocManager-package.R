@@ -4,6 +4,10 @@ NULL
 
 #' Install or update Bioconductor, CRAN, or GitHub packages
 #'
+#' @aliases R_BIOC_VERSION
+#'
+#' @description
+#'
 #' This package provides tools for managing _Bioconductor_ and other
 #' packages in a manner consistent with _Bioconductor_'s package
 #' versioning and release system.
@@ -65,6 +69,11 @@ NULL
 #'
 #' - \env{BIOCMANAGER_SITE_REPOSITORY} configure a more permanent
 #'   `site_repository` input to `repositories()`. See `?repositories`.
+#'
+#' - \env{R_BIOC_VERSION} use a specific, possibly unsupported,
+#'   version of Bioconductor. `install()`, `version()`, `available()`,
+#'   `valid()`, and `repositories()` all use the version *without*
+#'   checking that it is consistent with the version of *R* in use.
 #'
 #' @md
 #' @aliases BiocManager

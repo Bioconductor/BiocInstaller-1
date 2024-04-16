@@ -394,9 +394,12 @@ install <-
 
     version <- .version_validate(version)
 
+    ## use BiocVersion if .version_force_version() is not set;
+    ## `BiocVersion_pkg` is either "BiocVersion" or NULL.
+    BiocVersion_pkg <- if (is.na(.version_force_version())) "BiocVersion"
     inst <- installed.packages()
     if (!"BiocVersion" %in% rownames(inst)) {
-        pkgs <- unique(c("BiocVersion", pkgs))
+        pkgs <- unique(c(BiocVersion_pkg, pkgs))
     }
 
     cmp <- .version_compare(version, version())
@@ -408,7 +411,7 @@ install <-
         site_repository = site_repository)
 
     if (cmp != 0L) {
-        pkgs <- unique(c("BiocVersion", pkgs))
+        pkgs <- unique(c(BiocVersion_pkg, pkgs))
         valist <- .valid_result(vout, pkgs = inst)
         npkgs <- .install_n_invalid_pkgs(valist) + length(pkgs)
         if (!length(pkgs)-1L) {
