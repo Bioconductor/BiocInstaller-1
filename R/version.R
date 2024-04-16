@@ -35,6 +35,22 @@
     )
 )
 
+## version-specific options
+
+.version_force_version <-
+    function()
+{
+    ## check R_BIOC_VERSION environment variable
+    force_version <- Sys.getenv("R_BIOC_VERSION", "")
+
+    ## return either NA (do no force version) or the version to use
+    if (nzchar(force_version)) {
+        package_version(force_version)
+    } else {
+        NA
+    }
+}
+
 .version_sentinel <-
     function(msg)
 {
@@ -316,6 +332,9 @@ format.version_sentinel <-
 .version_validate <-
     function(version)
 {
+    force_version <- .version_force_version()
+    if (identical(package_version(version), force_version))
+        return(version)
     if (identical(version, "devel"))
         version <- .version_bioc("devel")
     version <- .package_version(version)
@@ -427,6 +446,10 @@ format.version_sentinel <-
 #' when version cannot be validated e.g., because internet access is
 #' not available.
 #'
+#' The environment variable `R_BIOC_VERSION` can be used to specify a
+#' version that is not consistent with *Bioconductor* release
+#' versioning. Use of this variable is strongly discouraged.
+#'
 #' @return A two-digit version, e.g., `3.8`, of class
 #'     `package_version` describing the version of _Bioconductor_ in
 #'     use.
@@ -439,7 +462,9 @@ format.version_sentinel <-
 version <-
     function()
 {
-    bioc <- .version_BiocVersion()
+    bioc <- .version_force_version()
+    if (is.na(bioc))
+        bioc <- .version_BiocVersion()
     if (is.na(bioc))
         bioc <- .version_choose_best()
 

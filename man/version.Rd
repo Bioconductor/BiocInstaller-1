@@ -30,6 +30,10 @@ by the user.
 \code{version()} (and all functions requiring version information) fails
 when version cannot be validated e.g., because internet access is
 not available.
+
+The environment variable \code{R_BIOC_VERSION} can be used to specify a
+version that is not consistent with \emph{Bioconductor} release
+versioning. Use of this variable is strongly discouraged.
 }
 \examples{
 BiocManager::version()
