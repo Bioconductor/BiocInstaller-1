@@ -216,7 +216,7 @@ options(
 BiocManager::install('archivedPackage')
 ```
 
-[CRANhaven]: https://cranhaven.org/
+[CRANhaven]: https://www.cranhaven.org/
 
 # Advanced use
 
