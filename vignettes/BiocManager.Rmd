@@ -268,6 +268,9 @@ Error: Bioconductor version '3.19' requires R version '4.4'; use
 Bioconductor version 3.19 (BiocManager 1.30.23), R 4.3.0 (2023-04-21)
 ```
 
+**Note**. Compatibility of Bioconductor with a mismatched version of R
+is not guaranteed and support is not provided for such installations.
+
 ## Managing multiple versions {#multiple-versions}
 
 It is possible to have multiple versions of _Bioconductor_ installed on the
