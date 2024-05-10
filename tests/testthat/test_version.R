@@ -448,7 +448,10 @@ test_that(".version_force_version() works", {
     )
     withr::with_envvar(
         list(R_BIOC_VERSION = test_version),
-        expect_identical(.version_validate(test_version), test_version)
+        expect_identical(
+            .version_validate(test_version),
+            package_version(test_version)
+        )
     )
     withr::with_envvar(
         list(R_BIOC_VERSION = test_version),
