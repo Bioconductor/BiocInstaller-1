@@ -332,12 +332,12 @@ format.version_sentinel <-
 .version_validate <-
     function(version)
 {
-    force_version <- .version_force_version()
-    if (identical(package_version(version), force_version))
-        return(version)
     if (identical(version, "devel"))
         version <- .version_bioc("devel")
     version <- .package_version(version)
+    force_version <- .version_force_version()
+    if (identical(version, force_version))
+        return(version)
 
     txt <- .version_validity(version)
     isTRUE(txt) || ifelse(.is_CRAN_check(), .message(txt), .stop(txt))
