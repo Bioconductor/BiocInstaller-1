@@ -275,6 +275,12 @@ format.version_sentinel <-
     function(version, map = .version_map(), r_version = .version_R_version(),
              check_future = FALSE)
 {
+    if (!is.na(.version_force_version())) {
+        return(sprintf(
+            "Using environment variable R_BIOC_VERSION = '%s'",
+            version
+        ))
+    }
     if (identical(version, "devel"))
         version <- .version_bioc("devel")
     version <- .package_version(version)
