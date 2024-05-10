@@ -244,6 +244,30 @@ Error: Bioconductor version '3.9' requires R version '3.6'; see
 A special version, `version="devel"`, allows use of _Bioconductor_
 packages that are under development.
 
+## Unsupported *R* / *Bioconductor* versions
+
+The main purpose of BiocManager is to ensure that users install the
+version of *Bioconductor* appropriate for their version of *R*. Use
+the environment variable `R_BIOC_VERSION` to install any version of
+*Bioconductor* on any version of *R*. Thus *R* version 4.3.0 and
+*Bioconductor* version 3.19 are not compatible...
+
+```
+> BiocManager::install(version = "3.19")
+Error: Bioconductor version '3.19' requires R version '4.4'; use
+  `version = '3.18'` with R version 4.3; see
+  https://bioconductor.org/install
+```
+
+...but the version can be forced with
+
+```
+> Sys.setenv(R_BIOC_VERSION="3.19")
+> BiocManager::install(version = "3.19")
+...
+Bioconductor version 3.19 (BiocManager 1.30.23), R 4.3.0 (2023-04-21)
+```
+
 ## Managing multiple versions {#multiple-versions}
 
 It is possible to have multiple versions of _Bioconductor_ installed on the
