@@ -65,10 +65,10 @@ BiocManager::install()
 To install CRAN package versions consistent with previous releases of
 Bioconductor, use the [BiocArchive][BiocArchive] package. BiocArchive enables
 contemporary installations of CRAN packages with out-of-date _Bioconductor_
-releases using [Posit Package Manager][PPM].
+releases using [Posit Public Package Manager][P3M].
 
 [BiocArchive]: https://github.com/Bioconductor/BiocArchive
-[PPM]: https://packagemanager.posit.co/
+[P3M]: https://packagemanager.posit.co/
 
 ## Version and validity of installations
 
@@ -125,7 +125,7 @@ be addressed to the [_Bioconductor_ support site][3].
 
 ## Updating old packages
 
-The user can often get an update packages prompt similar to: 
+The user can often get an update packages prompt similar to:
 
 ```
 > BiocManager::install("AnVIL")
@@ -136,7 +136,7 @@ Old packages: 'AnnotationDbi', 'arrow', 'basilisk.utils', 'beachmat',
   'IRanges', 'limma', 'pkgbuild', 'pkgload', 'processx', 'RcppSpdlog', 'rhdf5',
   'rstudioapi', 'SingleR', 'testthat', 'usethis', 'xml2', 'KernSmooth',
   'Matrix', 'mgcv'
-Update all/some/none? [a/s/n]: 
+Update all/some/none? [a/s/n]:
 ```
 
 A decision should be made regarding updating packages. In the following section
