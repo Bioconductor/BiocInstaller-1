@@ -20,9 +20,6 @@
     "Bioconductor online version validation disabled;
     see ?BIOCONDUCTOR_ONLINE_VERSION_DIAGNOSIS"
 
-.LEGACY_INSTALL_CMD <-
-    "source(\"https://bioconductor.org/biocLite.R\")"
-
 .VERSION_TAGS <-
     c("out-of-date", "release", "devel", "future")
 
@@ -366,9 +363,9 @@ format.version_sentinel <-
             return(sprintf(
                 "Bioconductor version '%s' is out-of-date; BiocManager does
                  not support R version '%s'. For older installations of
-                 Bioconductor, use '%s' and refer to the 'BiocInstaller'
+                 Bioconductor, refer to the 'BiocInstaller'
                  vignette on the Bioconductor website",
-                version, getRversion(), .LEGACY_INSTALL_CMD
+                version, getRversion(), 
             ))
         else
             return(sprintf(
