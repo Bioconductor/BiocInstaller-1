@@ -39,7 +39,7 @@ instructions][6] for installing _R_.
 ## Installing _BiocManager_
 
 Use standard _R_ installation procedures to install the
-[BiocManager][1] package. This command is requried only once per _R_
+[BiocManager][1] package. This command is required only once per _R_
 installation.
 
 ```{r, eval = FALSE}
