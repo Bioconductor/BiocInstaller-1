@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BiocManager</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.30.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.30.25.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -382,6 +382,53 @@ New-&gt;Shortcut. In the “type the location of the item” box, put:</p>
 <pre><code>cmd /C "set R_LIBS_USER=C:\Users\USER_NAME\Documents\R\3.5-Bioc-3.7 &amp;&amp; R"</code></pre>
 <p>Click “Next”. In the “Type a name for this shortcut” box, type
 <code>Bioc-3.7</code>.</p>
+<div class="section level4">
+<h4 id="same-r-version">Using the same R version<a class="anchor" aria-label="anchor" href="#same-r-version"></a>
+</h4>
+<p>Note that managing multiple versions of R and Bioconductor is
+important even when the Bioconductor versions use the same R version.
+The Bioconductor libraries should be kept in <em>separate</em>
+directories to avoid conflicts between packages. For example,
+Bioconductor versions 3.7 and 3.8 both use R version 3.5. To manage
+packages from these versions, create <em>two</em> separate library
+directories. Using the same setup as shown above, the second library
+directory would be:</p>
+<ul>
+<li>Linux: <code>~/R/3.5-Bioc-3.8</code>
+</li>
+<li>macOS: <code>~/Library/R/3.5-Bioc-3.8/library</code>
+</li>
+<li>Windows:
+<code>C:\Users\USER_NAME\Documents\R\3.5-Bioc-3.8</code>
+</li>
+</ul>
+<p>It is also convenient to set a separate alias or shortcut for this
+version:</p>
+<ul>
+<li>Linux:
+<code>alias Bioc3.8='R_LIBS_USER=~/R/3.5-Bioc-3.8 R'</code>
+</li>
+<li>macOS:
+<code>alias Bioc3.8='R_LIBS_USER=~/Library/R/3.5-Bioc-3.8/library R'</code>
+</li>
+</ul>
+<p>On Windows, create a shortcut. Go to My Computer and navigate to a
+directory that is in your PATH. Then right-click and choose
+New-&gt;Shortcut. In the “type the location of the item” box, put:</p>
+<ul>
+<li>Windows:
+<code>cmd /C "set R_LIBS_USER=C:\Users\USER_NAME\Documents\R\3.5-Bioc-3.8 &amp;&amp; R"</code>
+</li>
+</ul>
+<p>Now there are two sets of aliases or shortcuts, one for each version
+of Bioconductor. This strategy can be extended to any number of versions
+of Bioconductor as long as the corresponding R version is installed on
+the system. When working with separate R versions, the path to the
+<code>R</code> executable must be specified in the alias or
+shortcut.</p>
+<p>Keep in mind that mixing packages from different versions of
+Bioconductor can lead to unexpected behavior and errors.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="offline-use">Offline use<a class="anchor" aria-label="anchor" href="#offline-use"></a>
@@ -759,15 +806,15 @@ issue</a>.</p></li>
 <span><span class="co">## [1] BiocStyle_2.34.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] digest_0.6.37       desc_1.4.3          R6_2.5.1           </span></span>
-<span><span class="co">##  [4] bookdown_0.42       fastmap_1.2.0       xfun_0.50          </span></span>
-<span><span class="co">##  [7] cachem_1.1.0        knitr_1.49          htmltools_0.5.8.1  </span></span>
-<span><span class="co">## [10] rmarkdown_2.29      lifecycle_1.0.4     cli_3.6.3          </span></span>
-<span><span class="co">## [13] pkgdown_2.1.1       sass_0.4.9          textshaping_1.0.0  </span></span>
-<span><span class="co">## [16] jquerylib_0.1.4     systemfonts_1.2.1   compiler_4.4.2     </span></span>
-<span><span class="co">## [19] tools_4.4.2         ragg_1.3.3          evaluate_1.0.3     </span></span>
-<span><span class="co">## [22] bslib_0.8.0         yaml_2.3.10         BiocManager_1.30.25</span></span>
-<span><span class="co">## [25] jsonlite_1.8.9      rlang_1.1.5         fs_1.6.5</span></span></code></pre>
+<span><span class="co">##  [1] digest_0.6.37         desc_1.4.3            R6_2.6.0             </span></span>
+<span><span class="co">##  [4] bookdown_0.42         fastmap_1.2.0         xfun_0.50            </span></span>
+<span><span class="co">##  [7] cachem_1.1.0          knitr_1.49            htmltools_0.5.8.1    </span></span>
+<span><span class="co">## [10] rmarkdown_2.29        lifecycle_1.0.4       cli_3.6.3            </span></span>
+<span><span class="co">## [13] pkgdown_2.1.1         sass_0.4.9            textshaping_1.0.0    </span></span>
+<span><span class="co">## [16] jquerylib_0.1.4       systemfonts_1.2.1     compiler_4.4.2       </span></span>
+<span><span class="co">## [19] tools_4.4.2           ragg_1.3.3            evaluate_1.0.3       </span></span>
+<span><span class="co">## [22] bslib_0.9.0           yaml_2.3.10           BiocManager_1.30.25.1</span></span>
+<span><span class="co">## [25] jsonlite_1.8.9        rlang_1.1.5           fs_1.6.5</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
